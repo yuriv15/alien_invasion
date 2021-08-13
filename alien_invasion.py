@@ -1,9 +1,8 @@
-import sys
-
 import pygame
 
 from settings import Settings
 from ship import Ship
+import game_functions as gf
 
 
 def run_game():
@@ -18,18 +17,9 @@ def run_game():
 
     # Starts the main lace of the game
     while True:
-
-        # Observes keyboard and mouse events
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-
-        # Redraw the screen on each lace passage
-        screen.fill(ai_settings.bg_color)
-        ship.blitme()
-
-        # Leaves the most recent screen visible
-        pygame.display.flip()
+        gf.check_events(ship)
+        ship.update()
+        gf.update_screen(ai_settings, screen, ship)
 
 
 run_game()
